@@ -1,0 +1,68 @@
+{
+  "inbounds" : [
+    {
+      "listen" : "127.0.0.1",
+      "port" : 1080,
+      "protocol" : "socks",
+      "settings" : {
+        "auth" : "noauth",
+        "udp" : true
+      },
+      "sniffing" : {
+        "destOverride" : [
+          "http",
+          "tls",
+          "quic",
+          "fakedns"
+        ],
+        "enabled" : false,
+        "routeOnly" : true
+      },
+      "tag" : "socks"
+    }
+  ],
+  "outbounds" : [
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "151.101.67.6",
+            "port" : 443,
+            "users" : [
+              {
+                "encryption" : "none",
+                "id" : "310e01c0-8816-48ca-88a4-bdc17d087e0b"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "xhttp",
+        "security" : "tls",
+        "tlsSettings" : {
+          "allowInsecure" : true,
+          "alpn" : [
+            "h3"
+          ],
+          "fingerprint" : "chrome",
+          "serverName" : "top.alaja-mulaja.art"
+        },
+        "xhttpSettings" : {
+          "host" : "onlineclient.io",
+          "path" : "\/"
+        }
+      },
+      "tag" : "proxy"
+    },
+    {
+      "protocol" : "freedom",
+      "tag" : "direct"
+    },
+    {
+      "protocol" : "blackhole",
+      "tag" : "block"
+    }
+  ]
+}
